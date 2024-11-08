@@ -1,0 +1,35 @@
+{
+    "name": "cordova-plugin-printer",
+    "version": "0.7.3",
+    "description": "Prints HTML documents",
+    "cordova": {
+        "id": "cordova-plugin-printer",
+        "platforms": [
+            "ios",
+            "android"
+        ]
+    },
+    "keywords": [
+        "appplant",
+        "printer",
+        "cordova",
+        "ecosystem:cordova",
+        "cordova-ios"
+    ],
+    "engines": [
+        {
+            "name": "cordova",
+            "version": ">=3.0.0"
+        },
+        {
+            "name": "android-sdk",
+            "version": ">=19"
+        },
+        {
+            "name": "apple-ios",
+            "version": ">=8.0"
+        }
+    ],
+    "author": "Quang Huynh",
+    "license": "Apache 2.0"
+}

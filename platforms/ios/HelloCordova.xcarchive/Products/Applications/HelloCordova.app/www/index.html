@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Bluetooth Printer</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Bluetooth Printer</h1>
+
+        <!-- Nút khởi tạo Bluetooth -->
+        <button onclick="initializeBluetooth()" class="btn">Initialize Bluetooth</button>
+
+        <!-- Nút quét thiết bị Bluetooth -->
+        <button onclick="onScanDevicesClick()" class="btn">Scan for Bluetooth Devices</button>
+
+        <!-- Danh sách thiết bị Bluetooth tìm thấy -->
+        <div id="deviceList" class="device-list"></div>
+
+        <!-- Nút in tài liệu -->
+        <button onclick="onPrintClick()" class="btn">Print Document</button>
+    </div>
+
+    <!-- Script liên kết đến bluetoothPrinter.js -->
+    <script src="js/bluetoothPrinter.js"></script>
+    <script src="cordova.js"></script>
+    <!-- Chỉ hoạt động trên thiết bị đã build với Cordova -->
+
+    <script>
+        // Hiển thị danh sách thiết bị khi quét thành công
+        function onScanDevicesClick() {
+            scanForBluetoothDevices().then(devices => {
+                const deviceListDiv = document.getElementById("deviceList");
+                deviceListDiv.innerHTML = ""; // Xóa danh sách cũ nếu có
+                devices.forEach(device => {
+                    const deviceButton = document.createElement("button");
+                    deviceButton.innerHTML = `${device.name} - ${device.id}`;
+                    deviceButton.className = "btn device-btn";
+                    deviceButton.onclick = () => onSelectDeviceClick(device.id);
+                    deviceListDiv.appendChild(deviceButton);
+                });
+            }).catch(error => console.error('Error scanning devices:', error));
+        }
+    </script>
+</body>
+
+</html>
